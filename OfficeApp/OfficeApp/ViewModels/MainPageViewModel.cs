@@ -59,7 +59,7 @@ namespace OfficeApp.ViewModels
 
             var variableToPass = new NavigationParameters();
 
-            variableToPass.Add("(^_^)keyAko", tappedCell);
+            variableToPass.Add("(^_^)ImTheKey", tappedCell);
 
             NavigationService.NavigateAsync("EditDeleteDepartmentPage", variableToPass);
         }

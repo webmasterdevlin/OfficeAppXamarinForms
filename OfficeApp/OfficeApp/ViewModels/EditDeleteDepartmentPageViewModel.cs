@@ -39,9 +39,9 @@ namespace OfficeApp.ViewModels
         /// <param name="parameters"></param>
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("(^_^)keyAko"))
+            if (parameters.ContainsKey("(^_^)ImTheKey"))
             {
-                CurrentDepartment = (Department)parameters["(^_^)keyAko"];
+                CurrentDepartment = (Department)parameters["(^_^)ImTheKey"];
             }
             base.OnNavigatingTo(parameters);
         }
