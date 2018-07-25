@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="OfficeApp.Views.NewDepartmentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    Title="New Department Form"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Entry
+            Grid.Row="0"
+            Placeholder="e.g. HR"
+            Text="{Binding NewName, Mode=TwoWay}" />
+        <Entry
+            Grid.Row="1"
+            Placeholder="e.g. Human Resources"
+            Text="{Binding NewDescription, Mode=TwoWay}" />
+        <Entry
+            Grid.Row="2"
+            Placeholder="e.g. Xander Ford"
+            Text="{Binding NewHead, Mode=TwoWay}" />
+        <Entry
+            Grid.Row="3"
+            Placeholder="e.g. 002"
+            Text="{Binding NewCode, Mode=TwoWay}" />
+        <Button
+            Grid.Row="4"
+            BackgroundColor="Crimson"
+            Command="{Binding SaveCommand}"
+            HorizontalOptions="Center"
+            Text="Save"
+            VerticalOptions="Center" />
+    </Grid>
+</ContentPage>

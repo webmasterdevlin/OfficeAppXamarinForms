@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="OfficeApp.Views.EditDeleteDepartmentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    Title="{Binding CurrentDepartment.Name, StringFormat='{0} Edit/Delete'}"
+    Padding="20"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Entry
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Text="{Binding CurrentDepartment.Name, Mode=TwoWay}" />
+        <Entry
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Text="{Binding CurrentDepartment.Description, Mode=TwoWay}" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Text="{Binding CurrentDepartment.Head, Mode=TwoWay}" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Text="{Binding CurrentDepartment.Code, Mode=TwoWay}" />
+        <Button
+            Grid.Row="4"
+            Grid.Column="0"
+            BackgroundColor="DarkOrange"
+            Command="{Binding UpdateCommand}"
+            HorizontalOptions="Center"
+            Text="Update"
+            VerticalOptions="Center" />
+        <Button
+            Grid.Row="4"
+            Grid.Column="1"
+            BackgroundColor="DarkRed"
+            Command="{Binding DeleteCommand}"
+            HorizontalOptions="Center"
+            Text="Delete"
+            TextColor="White"
+            VerticalOptions="Center" />
+    </Grid>
+</ContentPage>

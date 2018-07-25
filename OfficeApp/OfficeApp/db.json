@@ -1,0 +1,11 @@
+{
+  "departments": [
+    {
+      "id": "bnuToqa",
+      "name": "ITC",
+      "description": "Information Technology",
+      "head": "Ramon Bautista",
+      "code": "FJPH003"
+    }
+  ]
+}
