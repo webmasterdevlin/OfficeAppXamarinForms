@@ -10,7 +10,6 @@ namespace OfficeApp.ViewModels
     public class NewDepartmentPageViewModel : ViewModelBase
     {
         private const string Url = "http://10.0.2.2:3000/departments/"; // For Android Emulators
-//        private const string Url = "http://localhost:3000/departments/"; // For UWP Emulators
 
         private readonly HttpClient _client = new HttpClient();
 
