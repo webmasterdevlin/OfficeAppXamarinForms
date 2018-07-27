@@ -8,7 +8,7 @@ namespace OfficeApp.Models
 {
     public class Department : BindableBase
     {
-        [JsonProperty("id")]
+        [JsonProperty("id")] // This maps your object's property to the json property of your rest service. camelcase is required in json
         public string Id { get; set; }
 
         [JsonProperty("name")]
