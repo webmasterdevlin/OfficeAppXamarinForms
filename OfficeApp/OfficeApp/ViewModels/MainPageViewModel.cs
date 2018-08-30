@@ -10,15 +10,13 @@ namespace OfficeApp.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private const string Url = "http://10.0.2.2:3000/departments/"; // For Android Emulators
-
         private readonly HttpClient _client = new HttpClient();
 
         private ObservableCollection<Department> _observableDepartments;
 
         public ObservableCollection<Department> ObservableDepartments
         {
-            get { return _observableDepartments; }
+            get => _observableDepartments;
             set
             {
                 _observableDepartments = value;
@@ -41,7 +39,7 @@ namespace OfficeApp.ViewModels
         public override async void OnNavigatingTo(NavigationParameters parameters)
         {
             // Microsoft.Net.Http from Nuget
-            var content = await _client.GetStringAsync(Url);
+            var content = await _client.GetStringAsync(Constants.URLs.Department);
 
             // Newtonsoft.Json from Nuget
             var departments = JsonConvert.DeserializeObject<List<Department>>(content);

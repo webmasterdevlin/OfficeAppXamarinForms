@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="OfficeApp.Views.LoginPage"
+    x:Class="OfficeApp.Views.SignupPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-    Title="Login"
-    Padding="20"
+    Title="Signup Page"
     prism:ViewModelLocator.AutowireViewModel="True">
     <StackLayout
         Padding="20"
@@ -14,25 +13,25 @@
         VerticalOptions="Center">
 
         <Entry Placeholder="username" Text="{Binding UserName}" />
-
+        <Entry Placeholder="email" Text="{Binding Email}" />
         <Entry
             IsPassword="True"
             Placeholder="password"
             Text="{Binding Password}" />
+
         <Button
-            BackgroundColor="YellowGreen"
-            Command="{Binding LoginCommand}"
+            BackgroundColor="DeepPink"
+            Command="{Binding SignupCommand}"
             FontSize="Large"
-            Text="Signin"
+            Text="Register"
             TextColor="White" />
 
-
-        <Label HorizontalOptions="Center" Text="Not yet registered?" />
+        <Label HorizontalOptions="Center" Text="{Binding Message}" />
 
         <Button
-            Clicked="Button_OnClicked"
+            Command="{Binding GoToLoginPageCommand}"
             HorizontalOptions="Center"
-            Text="signup" />
+            Text="Go back to login page" />
 
     </StackLayout>
 </ContentPage>

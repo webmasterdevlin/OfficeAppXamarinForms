@@ -9,8 +9,6 @@ namespace OfficeApp.ViewModels
 {
     public class NewDepartmentPageViewModel : ViewModelBase
     {
-        private const string Url = "http://10.0.2.2:3000/departments/"; // For Android Emulators
-
         private readonly HttpClient _client = new HttpClient();
 
         public string NewName { get; set; }
@@ -36,7 +34,7 @@ namespace OfficeApp.ViewModels
 
             var content = JsonConvert.SerializeObject(newDepartment);
 
-            await _client.PostAsync(Url, new StringContent(content, Encoding.UTF8, "application/json"));
+            await _client.PostAsync(Constants.URLs.Department, new StringContent(content, Encoding.UTF8, "application/json"));
 
             await NavigationService.GoBackAsync();
         }

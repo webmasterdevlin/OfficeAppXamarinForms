@@ -9,15 +9,13 @@ namespace OfficeApp.ViewModels
 {
     public class EditDeleteDepartmentPageViewModel : ViewModelBase
     {
-        private const string Url = "http://10.0.2.2:3000/departments/"; // For Android Emulators
-
         private readonly HttpClient _client = new HttpClient();
 
         private Department _currentDepartment;
 
         public Department CurrentDepartment
         {
-            get { return _currentDepartment; }
+            get => _currentDepartment;
             set
             {
                 _currentDepartment = value;
@@ -52,7 +50,7 @@ namespace OfficeApp.ViewModels
         {
             var content = JsonConvert.SerializeObject(CurrentDepartment);
 
-            await _client.PutAsync(Url + CurrentDepartment.Id, new StringContent(content, Encoding.UTF8, "application/json"));
+            await _client.PutAsync(Constants.URLs.Department + CurrentDepartment.Id, new StringContent(content, Encoding.UTF8, "application/json"));
             await NavigationService.GoBackAsync();
         }
 
@@ -60,7 +58,7 @@ namespace OfficeApp.ViewModels
 
         private async void Delete()
         {
-            await _client.DeleteAsync(Url + CurrentDepartment.Id);
+            await _client.DeleteAsync(Constants.URLs.Department + CurrentDepartment.Id);
             await NavigationService.GoBackAsync();
         }
     }

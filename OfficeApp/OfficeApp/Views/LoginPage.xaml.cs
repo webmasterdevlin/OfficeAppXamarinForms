@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace OfficeApp.Views
 {
@@ -7,6 +9,11 @@ namespace OfficeApp.Views
         public LoginPage()
         {
             InitializeComponent();
+        }
+
+        private async void Button_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new SignupPage());
         }
     }
 }
