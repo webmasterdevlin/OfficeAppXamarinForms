@@ -17,5 +17,7 @@ namespace OfficeApp.Models
         public string FirstName { get; set; }
         [JsonProperty("lastName")]
         public string LastName { get; set; }
+        [JsonProperty("token")]
+        public string Token { get; set; }
     }
 }

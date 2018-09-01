@@ -9,7 +9,7 @@ namespace OfficeApp.Services
     public interface IUserService
     {
         Task<bool> SignupAsync(User user);
-        Task<string> LoginAsync(User user);
+        Task<bool> LoginAsync(User user);
 
     }
 }

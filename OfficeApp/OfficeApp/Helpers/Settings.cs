@@ -15,10 +15,25 @@ namespace OfficeApp.Helpers
     {
         private static ISettings AppSettings => CrossSettings.Current;
 
+        public static string Username
+        {
+            get => AppSettings.GetValueOrDefault("Username", "");
+            set => AppSettings.AddOrUpdateValue("Username", value);
+        }
+        public static string Password
+        {
+            get => AppSettings.GetValueOrDefault("Password", "");
+            set => AppSettings.AddOrUpdateValue("Password", value);
+        }
         public static string Jwt
         {
             get => AppSettings.GetValueOrDefault("Jwt", "");
             set => AppSettings.AddOrUpdateValue("Jwt", value);
+        }
+        public static DateTime JwtExpirationDate
+        {
+            get => AppSettings.GetValueOrDefault("JwtExpirationDate", DateTime.UtcNow);
+            set => AppSettings.AddOrUpdateValue("JwtExpirationDate", value);
         }
     }
 }
