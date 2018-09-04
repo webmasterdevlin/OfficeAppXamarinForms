@@ -19,7 +19,7 @@ namespace OfficeApp.ViewModels
 
 	    public SignupPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService)
 	    {
-	        _pageDialogService = pageDialogService;
+            _pageDialogService = pageDialogService;
 	    }
 
 	    public DelegateCommand GoToLoginPageCommand => new DelegateCommand(GoToLogin);

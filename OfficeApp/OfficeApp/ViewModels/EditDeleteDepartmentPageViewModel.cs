@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
+using OfficeApp.Helpers;
 using OfficeApp.Models;
 using Prism.Navigation;
 
@@ -29,6 +30,7 @@ namespace OfficeApp.ViewModels
         /// <param name="navigationService"></param>
         public EditDeleteDepartmentPageViewModel(INavigationService navigationService) : base(navigationService)
         {
+
         }
 
         /// <summary>
@@ -48,8 +50,8 @@ namespace OfficeApp.ViewModels
 
         private async void Update()
         {
+            _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
             var content = JsonConvert.SerializeObject(CurrentDepartment);
-
             await _client.PutAsync(Constants.URLs.Department + CurrentDepartment.Id, new StringContent(content, Encoding.UTF8, "application/json"));
             await NavigationService.GoBackAsync();
         }
@@ -58,6 +60,7 @@ namespace OfficeApp.ViewModels
 
         private async void Delete()
         {
+            _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
             await _client.DeleteAsync(Constants.URLs.Department + CurrentDepartment.Id);
             await NavigationService.GoBackAsync();
         }

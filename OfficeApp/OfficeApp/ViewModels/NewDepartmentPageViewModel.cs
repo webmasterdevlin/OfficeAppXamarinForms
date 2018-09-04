@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using OfficeApp.Models;
+using OfficeApp.Helpers;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Net.Http;
@@ -24,15 +24,15 @@ namespace OfficeApp.ViewModels
 
         private async void Save()
         {
-            var newDepartment = new Department()
-            {
-                Name = NewName,
-                Description = NewDescription,
-                Head = NewHead,
-                Code = NewCode
-            };
+            _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
 
-            var content = JsonConvert.SerializeObject(newDepartment);
+            // Another option
+            //            HttpContent content = new StringContent(content);
+            //            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var content = JsonConvert.SerializeObject(
+                new { Name = $"{NewName}", Description = $"{NewDescription}", Head = $"{NewHead}", Code = $"{NewCode}" }
+                );
 
             await _client.PostAsync(Constants.URLs.Department, new StringContent(content, Encoding.UTF8, "application/json"));
 

@@ -35,7 +35,6 @@ namespace OfficeApp
             containerRegistry.RegisterForNavigation<EditDeleteDepartmentPage>();
             containerRegistry.RegisterForNavigation<NewDepartmentPage>();
             containerRegistry.RegisterForNavigation<SignupPage>();
-            containerRegistry.RegisterForNavigation<ProtectedPage>();
         }
     }
 }

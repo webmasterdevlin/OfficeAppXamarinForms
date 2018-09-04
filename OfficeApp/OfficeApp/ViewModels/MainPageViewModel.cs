@@ -5,6 +5,7 @@ using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
+using OfficeApp.Helpers;
 
 namespace OfficeApp.ViewModels
 {
@@ -27,6 +28,7 @@ namespace OfficeApp.ViewModels
         public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
+            _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
         }
 
         public DelegateCommand ToNewDepPageCommand => new DelegateCommand(ToNewDep);
@@ -51,13 +53,11 @@ namespace OfficeApp.ViewModels
 
         public DelegateCommand<Department> EditDeleteCommand => new DelegateCommand<Department>(EditDelete);
 
-        private void EditDelete(Department objectNaIpapasa)
+        private void EditDelete(Department department)
         {
-            var tappedCell = objectNaIpapasa;
+            var tappedCell = department;
 
-            var variableToPass = new NavigationParameters();
-
-            variableToPass.Add("(^_^)ImTheKey", tappedCell);
+            var variableToPass = new NavigationParameters {{"(^_^)ImTheKey", tappedCell}};
 
             NavigationService.NavigateAsync("EditDeleteDepartmentPage", variableToPass);
         }
