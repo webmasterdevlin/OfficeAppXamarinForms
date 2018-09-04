@@ -1,10 +1,10 @@
-﻿using Prism.Commands;
-using System.Net.Http;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using OfficeApp.Helpers;
 using OfficeApp.Models;
+using Prism.Commands;
 using Prism.Navigation;
+using System.Net.Http;
+using System.Text;
 
 namespace OfficeApp.ViewModels
 {
@@ -24,25 +24,17 @@ namespace OfficeApp.ViewModels
             }
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="navigationService"></param>
         public EditDeleteDepartmentPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-
         }
 
-        /// <summary>
-        /// Runs before you can see the application on the screen
-        /// </summary>
-        /// <param name="parameters"></param>
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
             if (parameters.ContainsKey("(^_^)ImTheKey"))
             {
                 CurrentDepartment = (Department)parameters["(^_^)ImTheKey"];
             }
+
             base.OnNavigatingTo(parameters);
         }
 
@@ -51,8 +43,10 @@ namespace OfficeApp.ViewModels
         private async void Update()
         {
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
+
             var content = JsonConvert.SerializeObject(CurrentDepartment);
             await _client.PutAsync(Constants.URLs.Department + CurrentDepartment.Id, new StringContent(content, Encoding.UTF8, "application/json"));
+
             await NavigationService.GoBackAsync();
         }
 
@@ -62,6 +56,7 @@ namespace OfficeApp.ViewModels
         {
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
             await _client.DeleteAsync(Constants.URLs.Department + CurrentDepartment.Id);
+
             await NavigationService.GoBackAsync();
         }
     }

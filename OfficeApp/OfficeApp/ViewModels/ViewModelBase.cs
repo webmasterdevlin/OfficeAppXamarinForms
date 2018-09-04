@@ -23,16 +23,28 @@ namespace OfficeApp.ViewModels
             NavigationService = navigationService;
         }
 
+        /// <summary>
+        /// Lifecycle event that runs before you leave the page
+        /// </summary>
+        /// <param name="parameters"></param>
         public virtual void OnNavigatedFrom(NavigationParameters parameters)
         {
             
         }
 
+        /// <summary>
+        /// Lifecycle event that runs after the UI appears
+        /// </summary>
+        /// <param name="parameters"></param>
         public virtual void OnNavigatedTo(NavigationParameters parameters)
         {
             
         }
 
+        /// <summary>
+        /// Lifecycle event that runs before the UI appears
+        /// </summary>
+        /// <param name="parameters"></param>
         public virtual void OnNavigatingTo(NavigationParameters parameters)
         {
             

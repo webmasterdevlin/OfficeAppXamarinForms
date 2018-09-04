@@ -56,7 +56,6 @@ namespace OfficeApp.ViewModels
         private void EditDelete(Department department)
         {
             var tappedCell = department;
-
             var variableToPass = new NavigationParameters {{"(^_^)ImTheKey", tappedCell}};
 
             NavigationService.NavigateAsync("EditDeleteDepartmentPage", variableToPass);

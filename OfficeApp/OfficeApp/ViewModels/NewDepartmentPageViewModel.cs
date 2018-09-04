@@ -26,8 +26,8 @@ namespace OfficeApp.ViewModels
         {
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
 
-            // Another option
-            //            HttpContent content = new StringContent(content);
+            //            Another option for using Content-Type
+            //            HttpContent httpContent = new StringContent(content);
             //            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             var content = JsonConvert.SerializeObject(

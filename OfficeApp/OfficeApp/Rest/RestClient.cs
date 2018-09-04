@@ -17,7 +17,7 @@ namespace OfficeApp.Rest
         public async Task<TResult> SendApiRequestAsync(string baseUrl)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer " + $"{Settings.Jwt}");
-            Debug.WriteLine(Settings.Jwt);
+
             return JsonConvert.DeserializeObject<TResult>(await _client.GetStringAsync(baseUrl));
         }
     }
