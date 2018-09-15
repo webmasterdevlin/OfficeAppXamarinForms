@@ -10,10 +10,5 @@ namespace OfficeApp.Views
         {
             InitializeComponent();
         }
-
-        private async void Button_OnClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new SignupPage());
-        }
     }
 }

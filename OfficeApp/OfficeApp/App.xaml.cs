@@ -30,11 +30,11 @@ namespace OfficeApp
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage>();
-            containerRegistry.RegisterForNavigation<LoginPage>();
-            containerRegistry.RegisterForNavigation<EditDeleteDepartmentPage>();
-            containerRegistry.RegisterForNavigation<NewDepartmentPage>();
-            containerRegistry.RegisterForNavigation<SignupPage>();
+            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<EditDeleteDepartmentPage, EditDeleteDepartmentPageViewModel>();
+            containerRegistry.RegisterForNavigation<NewDepartmentPage, NewDepartmentPageViewModel>();
+            containerRegistry.RegisterForNavigation<SignupPage, SignupPageViewModel>();
         }
     }
 }

@@ -31,11 +31,20 @@ namespace OfficeApp.ViewModels
 
             if (response)
             {
-                await NavigationService.NavigateAsync("MainPage");
+
+                await NavigationService.NavigateAsync("OfficeApp:///NavigationPage/MainPage"); // This reset the Navigation Stack to prevent user from going back to LoginPage
+
                 return;
             }
 
             await _pageDialogService.DisplayAlertAsync("Error logging in", "Please retype your username and password", "OK");
+        }
+
+        public DelegateCommand ToSignupPageCommand => new DelegateCommand(ToSignupPage);
+
+        private async void ToSignupPage()
+        {
+            await NavigationService.NavigateAsync("SignupPage");
         }
     }
 }

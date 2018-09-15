@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="OfficeApp.Views.NewDepartmentPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -33,6 +33,7 @@
         <Button
             Grid.Row="4"
             BackgroundColor="Crimson"
+            CornerRadius="5"
             Command="{Binding SaveCommand}"
             HorizontalOptions="Center"
             Text="Save"

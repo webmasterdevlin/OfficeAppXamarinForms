@@ -1,37 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="OfficeApp.Views.SignupPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-    Title="Signup Page"
-    prism:ViewModelLocator.AutowireViewModel="True">
-    <StackLayout
-        Padding="20"
-        Orientation="Vertical"
-        Spacing="20"
-        VerticalOptions="Center">
-
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage x:Class="OfficeApp.Views.SignupPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" Title="Signup Page" prism:ViewModelLocator.AutowireViewModel="True" Padding="20">
+    <StackLayout Padding="20" Orientation="Vertical" Spacing="20" VerticalOptions="Center">
+        <Label Text="Office App" TextColor="DeepPink" FontSize="32" HorizontalOptions="Center" VerticalOptions="StartAndExpand" />
         <Entry Placeholder="username" Text="{Binding UserName}" />
         <Entry Placeholder="email" Text="{Binding Email}" />
-        <Entry
-            IsPassword="True"
-            Placeholder="password"
-            Text="{Binding Password}" />
-
-        <Button
-            BackgroundColor="DeepPink"
-            Command="{Binding SignupCommand}"
-            FontSize="Large"
-            Text="Register"
-            TextColor="White" />
-
-        <Label HorizontalOptions="Center" Text="{Binding Message}" />
-
-        <Button
-            Command="{Binding GoToLoginPageCommand}"
-            HorizontalOptions="Center"
-            Text="Go back to login page" />
-
+        <Entry IsPassword="True" Placeholder="password" Text="{Binding Password}" />
+        <Button BackgroundColor="DeepPink" Command="{Binding SignupCommand}" CornerRadius="5" FontSize="Large" Text="Register" TextColor="White" />
+        <Label HorizontalOptions="Center" Text="Back to login">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToLoginPageCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
     </StackLayout>
 </ContentPage>

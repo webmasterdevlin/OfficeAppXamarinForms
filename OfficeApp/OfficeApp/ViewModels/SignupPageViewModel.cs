@@ -26,7 +26,7 @@ namespace OfficeApp.ViewModels
 
 	    private void GoToLogin()
 	    {
-	        NavigationService.NavigateAsync("LoginPage");
+            NavigationService.GoBackAsync();
 	    }
 
 	    public DelegateCommand SignupCommand => new DelegateCommand(async () => await Signup());
