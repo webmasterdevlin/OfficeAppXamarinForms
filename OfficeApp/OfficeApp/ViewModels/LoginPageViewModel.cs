@@ -1,4 +1,5 @@
-﻿using OfficeApp.Models;
+﻿using System.Threading.Tasks;
+using OfficeApp.Models;
 using OfficeApp.Services;
 using Prism.Commands;
 using Prism.Navigation;
@@ -11,7 +12,7 @@ namespace OfficeApp.ViewModels
         private readonly IPageDialogService _pageDialogService;
         private readonly UserService _userService = new UserService();
 
-        public string UserName { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
 
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService)
@@ -25,7 +26,7 @@ namespace OfficeApp.ViewModels
 
         private async void ToMain()
         {
-            var login = new User { UserName = UserName, Password = Password };
+            var login = new User { Email = Email, Password = Password };
 
             bool response = await _userService.LoginAsync(login);
 
@@ -40,9 +41,9 @@ namespace OfficeApp.ViewModels
             await _pageDialogService.DisplayAlertAsync("Error logging in", "Please retype your username and password", "OK");
         }
 
-        public DelegateCommand ToSignupPageCommand => new DelegateCommand(ToSignupPage);
+        public DelegateCommand ToSignupPageCommand => new DelegateCommand(async () => await ToSignupPage());
 
-        private async void ToSignupPage()
+        private async Task ToSignupPage()
         {
             await NavigationService.NavigateAsync("SignupPage");
         }

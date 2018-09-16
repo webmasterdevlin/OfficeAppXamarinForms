@@ -34,7 +34,7 @@ namespace OfficeApp.ViewModels
                 new { Name = $"{NewName}", Description = $"{NewDescription}", Head = $"{NewHead}", Code = $"{NewCode}" }
                 );
 
-            await _client.PostAsync(Constants.URLs.Department, new StringContent(content, Encoding.UTF8, "application/json"));
+            await _client.PostAsync(Constants.URLs.SetDepartmentUrl(), new StringContent(content, Encoding.UTF8, "application/json"));
 
             await NavigationService.GoBackAsync();
         }

@@ -15,6 +15,7 @@ namespace OfficeApp.ViewModels
 	    public string UserName { get; set; }
 	    public string Email { get; set; }
 	    public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
 
 
 	    public SignupPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService)
@@ -33,6 +34,11 @@ namespace OfficeApp.ViewModels
 
 	    private async Task Signup()
 	    {
+            if (Password != ConfirmPassword)
+            {
+                await _pageDialogService.DisplayAlertAsync("Error Signing Up", "Password and confirm password are not matched ", "OK");
+                return;
+            }
 
             User user = new User
             {

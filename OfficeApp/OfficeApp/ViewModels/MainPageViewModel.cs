@@ -41,7 +41,7 @@ namespace OfficeApp.ViewModels
         public override async void OnNavigatingTo(NavigationParameters parameters)
         {
             // Microsoft.Net.Http from Nuget
-            var content = await _client.GetStringAsync(Constants.URLs.Department);
+            var content = await _client.GetStringAsync(Constants.URLs.SetDepartmentUrl());
 
             // Newtonsoft.Json from Nuget
             var departments = JsonConvert.DeserializeObject<List<Department>>(content);

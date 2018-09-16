@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace OfficeApp.Services
 {
     public class UserService : IUserService
@@ -19,7 +20,7 @@ namespace OfficeApp.Services
         {
             var content = JsonConvert.SerializeObject(user);
 
-            var response = await _client.PostAsync(Constants.URLs.Signup, new StringContent(content, Encoding.UTF8, "application/json"));
+            var response = await _client.PostAsync(Constants.URLs.SetSignupUrl(), new StringContent(content, Encoding.UTF8, "application/json"));
 
             return response.IsSuccessStatusCode;
         }
@@ -28,7 +29,7 @@ namespace OfficeApp.Services
         {
             string content = JsonConvert.SerializeObject(user);
 
-            HttpResponseMessage response = await _client.PostAsync(Constants.URLs.Login, new StringContent(content, Encoding.UTF8, "application/json"));
+            HttpResponseMessage response = await _client.PostAsync(Constants.URLs.SetLoginUrl(), new StringContent(content, Encoding.UTF8, "application/json"));
 
             if (response.StatusCode == HttpStatusCode.Unauthorized)
             {

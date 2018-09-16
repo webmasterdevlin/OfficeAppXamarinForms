@@ -45,7 +45,7 @@ namespace OfficeApp.ViewModels
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
 
             var content = JsonConvert.SerializeObject(CurrentDepartment);
-            await _client.PutAsync(Constants.URLs.Department + CurrentDepartment.Id, new StringContent(content, Encoding.UTF8, "application/json"));
+            await _client.PutAsync(Constants.URLs.SetDepartmentUrl() + CurrentDepartment.Id, new StringContent(content, Encoding.UTF8, "application/json"));
 
             await NavigationService.GoBackAsync();
         }
@@ -55,7 +55,7 @@ namespace OfficeApp.ViewModels
         private async void Delete()
         {
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
-            await _client.DeleteAsync(Constants.URLs.Department + CurrentDepartment.Id);
+            await _client.DeleteAsync(Constants.URLs.SetDepartmentUrl() + CurrentDepartment.Id);
 
             await NavigationService.GoBackAsync();
         }

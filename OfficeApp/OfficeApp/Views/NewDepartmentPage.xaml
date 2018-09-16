@@ -33,6 +33,7 @@
         <Button
             Grid.Row="4"
             BackgroundColor="Crimson"
+            TextColor="White"
             CornerRadius="5"
             Command="{Binding SaveCommand}"
             HorizontalOptions="Center"

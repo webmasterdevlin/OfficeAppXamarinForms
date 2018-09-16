@@ -3,8 +3,9 @@
     <StackLayout Padding="20" Orientation="Vertical" Spacing="20" VerticalOptions="Center">
         <Label Text="Office App" TextColor="DeepPink" FontSize="32" HorizontalOptions="Center" VerticalOptions="StartAndExpand" />
         <Entry Placeholder="username" Text="{Binding UserName}" />
-        <Entry Placeholder="email" Text="{Binding Email}" />
+        <Entry Placeholder="email" Keyboard="Email" Text="{Binding Email}" />
         <Entry IsPassword="True" Placeholder="password" Text="{Binding Password}" />
+        <Entry IsPassword="True" Placeholder="confirm password" Text="{Binding ConfirmPassword}" />
         <Button BackgroundColor="DeepPink" Command="{Binding SignupCommand}" CornerRadius="5" FontSize="Large" Text="Register" TextColor="White" />
         <Label HorizontalOptions="Center" Text="Back to login">
             <Label.GestureRecognizers>
