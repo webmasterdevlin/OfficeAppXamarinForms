@@ -12,6 +12,7 @@ namespace OfficeApp.Views
 		public MainPage ()
 		{
 			InitializeComponent ();
-		}
+            NavigationPage.SetHasNavigationBar(this, false);
+        }
 	}
 }

@@ -45,7 +45,6 @@
             BackgroundColor="Crimson"
             CornerRadius="5"
             Command="{Binding ToNewDepPageCommand}"
-            HorizontalOptions="End"
             Text="Add"
             TextColor="White"
             VerticalOptions="Center" />

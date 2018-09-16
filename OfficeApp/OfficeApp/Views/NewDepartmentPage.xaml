@@ -36,7 +36,6 @@
             TextColor="White"
             CornerRadius="5"
             Command="{Binding SaveCommand}"
-            HorizontalOptions="Center"
             Text="Save"
             VerticalOptions="Center" />
     </Grid>

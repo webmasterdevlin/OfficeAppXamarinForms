@@ -45,8 +45,8 @@
             CornerRadius="5"
             BackgroundColor="DarkOrange"
             Command="{Binding UpdateCommand}"
-            HorizontalOptions="Center"
             Text="Update"
+            TextColor="Black"
             VerticalOptions="Center" />
         <Button
             Grid.Row="4"
@@ -54,7 +54,6 @@
             CornerRadius="5"
             BackgroundColor="DarkRed"
             Command="{Binding DeleteCommand}"
-            HorizontalOptions="Center"
             Text="Delete"
             TextColor="White"
             VerticalOptions="Center" />

@@ -7,6 +7,7 @@ namespace OfficeApp.Views
         public SignupPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }
