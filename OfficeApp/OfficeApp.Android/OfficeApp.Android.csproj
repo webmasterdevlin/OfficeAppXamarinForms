@@ -100,7 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OfficeApp\OfficeApp.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
+      <Project>{B012F373-A134-4CBB-882A-98C34AC4A951}</Project>
       <Name>OfficeApp</Name>
     </ProjectReference>
   </ItemGroup>
