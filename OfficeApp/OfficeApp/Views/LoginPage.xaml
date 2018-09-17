@@ -5,7 +5,7 @@
         <Entry Placeholder="email" Keyboard="Email" Text="{Binding Email}" />
         <Entry IsPassword="True" Placeholder="password" Text="{Binding Password}" />
         <Button BackgroundColor="YellowGreen" Command="{Binding LoginCommand}" CornerRadius="5" FontSize="Large" Text="Signin" TextColor="White" />
-        <StackLayout x:Name="MyStack" Orientation="Horizontal" HorizontalOptions="Center">
+<!--        <StackLayout x:Name="MyStack" Orientation="Horizontal" HorizontalOptions="Center">
             <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer />
             </StackLayout.GestureRecognizers>
@@ -15,6 +15,18 @@
                     <TapGestureRecognizer Command="{Binding BindingContext.ToSignupPageCommand, Source={x:Reference MyStack}}" />
                 </Label.GestureRecognizers>
             </Label>
-        </StackLayout>
+        </StackLayout>-->
+        <Label HorizontalOptions="Center" TextColor="Black">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Not yet registered? " />
+                    <Span Text="Sign Up">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToSignupPageCommand}" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
     </StackLayout>
 </ContentPage>
