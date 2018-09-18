@@ -9,6 +9,7 @@
     prism:ViewModelLocator.AutowireViewModel="True">
     <Grid Margin="20">
         <Grid.RowDefinitions>
+            
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />

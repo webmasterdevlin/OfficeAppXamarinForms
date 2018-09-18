@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     Title="New Department Form"
-    prism:ViewModelLocator.AutowireViewModel="True">
+    prism:ViewModelLocator.AutowireViewModel="True" Padding="20">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -32,7 +32,7 @@
             Text="{Binding NewCode, Mode=TwoWay}" />
         <Button
             Grid.Row="4"
-            BackgroundColor="Crimson"
+            BackgroundColor="Purple"
             TextColor="White"
             CornerRadius="5"
             Command="{Binding SaveCommand}"
