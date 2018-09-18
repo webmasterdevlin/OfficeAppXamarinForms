@@ -7,7 +7,7 @@
         <Entry IsPassword="True" Placeholder="password" Text="{Binding Password}" />
         <Entry IsPassword="True" Placeholder="confirm password" Text="{Binding ConfirmPassword}" />
         <Button BackgroundColor="DeepPink" Command="{Binding SignupCommand}" CornerRadius="5" FontSize="Large" Text="Register" TextColor="White" />
-        <Label HorizontalOptions="Center" Text="Back to login">
+        <Label HorizontalOptions="Center" Text="Back to login" TextColor="DarkGray">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding GoToLoginPageCommand}" />
             </Label.GestureRecognizers>

@@ -16,11 +16,11 @@
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>-->
-        <Label HorizontalOptions="Center" TextColor="Black">
+        <Label HorizontalOptions="Center" TextColor="DarkGray">
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="Not yet registered? " />
-                    <Span Text="Sign Up">
+                    <Span Text="Sign Up" FontAttributes="Bold">
                         <Span.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ToSignupPageCommand}" />
                         </Span.GestureRecognizers>
