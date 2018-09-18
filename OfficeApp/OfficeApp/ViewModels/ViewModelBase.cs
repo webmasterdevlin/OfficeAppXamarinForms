@@ -1,16 +1,12 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OfficeApp.ViewModels
 {
-    public class ViewModelBase : BindableBase, INavigationAware, IDestructible
+    public abstract class ViewModelBase : BindableBase, INavigationAware, IDestructible
     {
-        protected INavigationService NavigationService { get; private set; }
-
         private string _title;
         public string Title
         {
@@ -18,9 +14,13 @@ namespace OfficeApp.ViewModels
             set => SetProperty(ref _title, value);
         }
 
-        public ViewModelBase(INavigationService navigationService)
+        protected INavigationService NavigationService { get; }
+        protected IPageDialogService PageDialogService { get; }
+
+        protected ViewModelBase(INavigationService navigationService, IPageDialogService pageDialogService)
         {
-            NavigationService = navigationService;
+            NavigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+            PageDialogService = pageDialogService ?? throw new ArgumentNullException(nameof(pageDialogService));
         }
 
         /// <summary>
@@ -54,5 +54,6 @@ namespace OfficeApp.ViewModels
         {
             
         }
+
     }
 }

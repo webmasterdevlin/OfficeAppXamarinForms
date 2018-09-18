@@ -2,6 +2,7 @@
 using OfficeApp.Helpers;
 using Prism.Commands;
 using Prism.Navigation;
+using Prism.Services;
 using System.Net.Http;
 using System.Text;
 
@@ -18,7 +19,8 @@ namespace OfficeApp.ViewModels
 
         public DelegateCommand SaveCommand => new DelegateCommand(Save);
 
-        public NewDepartmentPageViewModel(INavigationService navigationService) : base(navigationService)
+        public NewDepartmentPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+            : base(navigationService, pageDialogService)
         {
         }
 
@@ -34,9 +36,17 @@ namespace OfficeApp.ViewModels
                 new { Name = $"{NewName}", Description = $"{NewDescription}", Head = $"{NewHead}", Code = $"{NewCode}" }
                 );
 
-            await _client.PostAsync(Constants.URLs.SetDepartmentUrl(), new StringContent(content, Encoding.UTF8, "application/json"));
+          using (var response = await _client.PostAsync(Constants.URLs.SetDepartmentUrl(),
+                                                        new StringContent(content, Encoding.UTF8, "application/json")))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    await NavigationService.NavigateAsync("OfficeApp:///NavigationPage/MainPage"); // This reset the Navigation Stack to prevent user from going back to LoginPage
+                    return;
+                }
 
-            await NavigationService.GoBackAsync();
+                await PageDialogService.DisplayAlertAsync("Error logging in", "Please retype your username and password", "OK");
+            }
         }
     }
 }

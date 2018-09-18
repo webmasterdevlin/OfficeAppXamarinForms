@@ -9,7 +9,6 @@ namespace OfficeApp.ViewModels
 {
 	public class SignupPageViewModel : ViewModelBase
 	{
-	    private readonly IPageDialogService _pageDialogService;
 	    private readonly UserService _userService = new UserService();
 
 	    public string UserName { get; set; }
@@ -18,9 +17,10 @@ namespace OfficeApp.ViewModels
         public string ConfirmPassword { get; set; }
 
 
-	    public SignupPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService)
+	    public SignupPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+            : base(navigationService, pageDialogService)
 	    {
-            _pageDialogService = pageDialogService;
+
 	    }
 
 	    public DelegateCommand GoToLoginPageCommand => new DelegateCommand(GoToLogin);
@@ -36,7 +36,7 @@ namespace OfficeApp.ViewModels
 	    {
             if (Password != ConfirmPassword)
             {
-                await _pageDialogService.DisplayAlertAsync("Error Signing Up", "Password and confirm password are not matched ", "OK");
+                await PageDialogService.DisplayAlertAsync("Error Signing Up", "Password and confirm password are not matched ", "OK");
                 return;
             }
 
@@ -49,9 +49,10 @@ namespace OfficeApp.ViewModels
 
             var success = await _userService.SignupAsync(user);
 
-	        if (success) GoToLogin();
+	        if (success)
+                GoToLogin();
 	        
-	        else await _pageDialogService.DisplayAlertAsync("Registration Not successful. Please try again", "OK", "Cancel");    
+	        else await PageDialogService.DisplayAlertAsync("Registration Not successful. Please try again", "OK", "Cancel");    
 	    }
     }
 }

@@ -29,24 +29,30 @@ namespace OfficeApp.Services
         {
             string content = JsonConvert.SerializeObject(user);
 
-            HttpResponseMessage response = await _client.PostAsync(Constants.URLs.SetLoginUrl(), new StringContent(content, Encoding.UTF8, "application/json"));
-
-            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            using (HttpResponseMessage response = await _client.PostAsync(Constants.URLs.SetLoginUrl(),
+                                                      new StringContent(content, Encoding.UTF8, "application/json")))
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    return false;
+                }
+
+                else if (response.IsSuccessStatusCode)
+                {
+                    string stringResponse = await response.Content.ReadAsStringAsync();
+
+                    JObject jwtJObject = JsonConvert.DeserializeObject<dynamic>(stringResponse);
+
+                    UserToken userToken = JsonConvert.DeserializeObject<UserToken>(stringResponse);
+                    DateTime accessTokenExpiration = jwtJObject.Value<DateTime>(".expires");
+
+                    Settings.Jwt = userToken.Token;
+                    Settings.JwtExpirationDate = accessTokenExpiration;
+
+                    return response.IsSuccessStatusCode;
+                }
                 return false;
             }
-
-            string stringResponse = await response.Content.ReadAsStringAsync();
-
-            JObject jwtJObject = JsonConvert.DeserializeObject<dynamic>(stringResponse);
-
-            UserToken userToken = JsonConvert.DeserializeObject<UserToken>(stringResponse);
-            DateTime accessTokenExpiration = jwtJObject.Value<DateTime>(".expires");
-
-            Settings.Jwt = userToken.Token;
-            Settings.JwtExpirationDate = accessTokenExpiration;
-
-            return response.IsSuccessStatusCode;
         }
     }
 

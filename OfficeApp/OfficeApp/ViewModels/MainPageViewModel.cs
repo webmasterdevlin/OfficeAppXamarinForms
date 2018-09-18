@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using OfficeApp.Helpers;
+using Prism.Services;
 
 namespace OfficeApp.ViewModels
 {
@@ -25,8 +26,8 @@ namespace OfficeApp.ViewModels
             }
         }
 
-        public MainPageViewModel(INavigationService navigationService)
-            : base(navigationService)
+        public MainPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+            : base(navigationService, pageDialogService)
         {
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
         }

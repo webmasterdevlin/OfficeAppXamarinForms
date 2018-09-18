@@ -9,15 +9,15 @@ namespace OfficeApp.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
-        private readonly IPageDialogService _pageDialogService;
         private readonly UserService _userService = new UserService();
 
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public LoginPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService)
+        public LoginPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+            : base(navigationService, pageDialogService)
         {
-            _pageDialogService = pageDialogService;
+
         }
 
         public DelegateCommand LoginCommand => new DelegateCommand(
@@ -32,13 +32,11 @@ namespace OfficeApp.ViewModels
 
             if (response)
             {
-
                 await NavigationService.NavigateAsync("OfficeApp:///NavigationPage/MainPage"); // This reset the Navigation Stack to prevent user from going back to LoginPage
-
                 return;
             }
 
-            await _pageDialogService.DisplayAlertAsync("Error logging in", "Please retype your username and password", "OK");
+            await PageDialogService.DisplayAlertAsync("Error logging in", "Please retype your username and password", "OK");
         }
 
         public DelegateCommand ToSignupPageCommand => new DelegateCommand(async () => await ToSignupPage());
