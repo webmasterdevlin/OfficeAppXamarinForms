@@ -13,6 +13,7 @@
     <Compile Remove="%24RYHQC4G.UWP\**" />
     <EmbeddedResource Remove="%24RYHQC4G.UWP\**" />
     <None Remove="%24RYHQC4G.UWP\**" />
+    <Compile Remove="Helpers\IRestClient.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,5 +43,8 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Rest" />
   </ItemGroup>
 </Project>

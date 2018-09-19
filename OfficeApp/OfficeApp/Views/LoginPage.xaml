@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage x:Class="OfficeApp.Views.LoginPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" Title="Login" Padding="20" prism:ViewModelLocator.AutowireViewModel="True" BackgroundColor="Whitesmoke">
     <StackLayout Padding="20" Orientation="Vertical" Spacing="20" VerticalOptions="Center">
+         <ActivityIndicator Color="DarkGoldenrod" IsEnabled="{Binding IsLogging}" IsRunning="{Binding IsLogging}" />
         <Label Text="Office App" TextColor="YellowGreen" FontSize="32" HorizontalOptions="Center" VerticalOptions="StartAndExpand" />
         <Entry Placeholder="email" Keyboard="Email" Text="{Binding Email}" />
         <Entry IsPassword="True" Placeholder="password" Text="{Binding Password}" />

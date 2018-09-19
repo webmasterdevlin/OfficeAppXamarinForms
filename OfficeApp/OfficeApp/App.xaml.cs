@@ -1,4 +1,5 @@
-﻿using Prism;
+﻿using OfficeApp.Services;
+using Prism;
 using Prism.Ioc;
 using OfficeApp.ViewModels;
 using OfficeApp.Views;

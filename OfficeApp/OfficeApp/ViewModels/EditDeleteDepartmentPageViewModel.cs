@@ -7,13 +7,15 @@ using Prism.Services;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using OfficeApp.Services;
 
 namespace OfficeApp.ViewModels
 {
     public class EditDeleteDepartmentPageViewModel : ViewModelBase
     {
         private readonly HttpClient _client = new HttpClient();
-
+        private readonly DepartmentService _departmentService = new DepartmentService();
+        
         private Department _currentDepartment;
 
         public Department CurrentDepartment
@@ -43,13 +45,11 @@ namespace OfficeApp.ViewModels
 
         private async Task Update()
         {
-            _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
 
             var content = JsonConvert.SerializeObject(CurrentDepartment);
 
-            using (var response = await _client.PutAsync(Constants.URLs.SetDepartmentUrl()+ CurrentDepartment.Id,
-                                          new StringContent(content, Encoding.UTF8, "application/json")))
-            {
+            var response = await _departmentService.SendPutAsync(CurrentDepartment, content);
+            
                 if (response.IsSuccessStatusCode)
                 {
                     await NavigationService.GoBackAsync();
@@ -57,7 +57,6 @@ namespace OfficeApp.ViewModels
                 }
 
                 await PageDialogService.DisplayAlertAsync("Error updating", "Please check your internet", "OK");
-            }
         }
 
         public DelegateCommand DeleteCommand => new DelegateCommand(async () => await Delete());
@@ -67,9 +66,7 @@ namespace OfficeApp.ViewModels
             var userResponse = await PageDialogService.DisplayAlertAsync("Deleting an entry", "You sure you want to delete this?", "Yes", "Cancel");
             if (!userResponse) return;
 
-            _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
-            await _client.DeleteAsync(Constants.URLs.SetDepartmentUrl() + CurrentDepartment.Id);
-
+            await _departmentService.SendDeleteAsync(CurrentDepartment.Id);
             await NavigationService.GoBackAsync();
         }
     }

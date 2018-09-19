@@ -29,7 +29,7 @@ namespace OfficeApp.Services
         {
             string content = JsonConvert.SerializeObject(user);
 
-            using (HttpResponseMessage response = await _client.PostAsync(Constants.URLs.SetLoginUrl(),
+            using (var response = await _client.PostAsync(Constants.URLs.SetLoginUrl(),
                                                       new StringContent(content, Encoding.UTF8, "application/json")))
             {
                 if (response.StatusCode == HttpStatusCode.Unauthorized)
@@ -39,7 +39,7 @@ namespace OfficeApp.Services
 
                 else if (response.IsSuccessStatusCode)
                 {
-                    string stringResponse = await response.Content.ReadAsStringAsync();
+                    var stringResponse = await response.Content.ReadAsStringAsync();
 
                     JObject jwtJObject = JsonConvert.DeserializeObject<dynamic>(stringResponse);
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using OfficeApp.Helpers;
+using OfficeApp.Services;
 using Prism.Services;
 
 namespace OfficeApp.ViewModels
@@ -13,7 +14,7 @@ namespace OfficeApp.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         private readonly HttpClient _client = new HttpClient();
-
+        private readonly DepartmentService _departmentService = new DepartmentService();
         private ObservableCollection<Department> _observableDepartments;
 
         public ObservableCollection<Department> ObservableDepartments
@@ -26,6 +27,7 @@ namespace OfficeApp.ViewModels
             }
         }
 
+        
         public MainPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
             : base(navigationService, pageDialogService)
         {
@@ -41,11 +43,10 @@ namespace OfficeApp.ViewModels
 
         public override async void OnNavigatingTo(NavigationParameters parameters)
         {
-            // Microsoft.Net.Http from Nuget
-            var content = await _client.GetStringAsync(Constants.URLs.SetDepartmentUrl());
-
+            var contents = await _departmentService.SendGetAsync();
+            
             // Newtonsoft.Json from Nuget
-            var departments = JsonConvert.DeserializeObject<List<Department>>(content);
+            var departments = JsonConvert.DeserializeObject<List<Department>>(contents);
 
             ObservableDepartments = new ObservableCollection<Department>(departments);
 

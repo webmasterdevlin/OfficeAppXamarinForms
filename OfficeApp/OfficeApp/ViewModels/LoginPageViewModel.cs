@@ -14,6 +14,18 @@ namespace OfficeApp.ViewModels
         public string Email { get; set; }
         public string Password { get; set; }
 
+        private bool _isLogging;
+
+        public bool IsLogging
+        {
+            get => _isLogging;
+            set
+            {
+                _isLogging = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
             : base(navigationService, pageDialogService)
         {
@@ -26,16 +38,20 @@ namespace OfficeApp.ViewModels
 
         private async void ToMain()
         {
+            IsLogging = !IsLogging;
+            
             var login = new User { Email = Email, Password = Password };
 
             bool response = await _userService.LoginAsync(login);
 
             if (response)
             {
+                IsLogging = !IsLogging;
                 await NavigationService.NavigateAsync("OfficeApp:///NavigationPage/MainPage"); // This reset the Navigation Stack to prevent user from going back to LoginPage
                 return;
             }
 
+            IsLogging = !IsLogging;
             await PageDialogService.DisplayAlertAsync("Error logging in", "Please retype your username and password", "OK");
         }
 
