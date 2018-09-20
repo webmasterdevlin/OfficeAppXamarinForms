@@ -87,6 +87,11 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\company_logo.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\company_logo.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\company_logo.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\company_logo.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\company_logo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

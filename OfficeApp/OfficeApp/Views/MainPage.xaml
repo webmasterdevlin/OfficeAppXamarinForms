@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage x:Class="OfficeApp.Views.MainPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" Title="Our Office" prism:ViewModelLocator.AutowireViewModel="True" Padding="20">
+<ContentPage x:Class="OfficeApp.Views.MainPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" Title="Office App" prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Text="Logout" Command="{Binding LogoutCommand}" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
+        
         <StyleSheet><![CDATA[
             .fab {
                 color: White;
@@ -20,7 +24,7 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" FontSize="Large" HorizontalOptions="Center" Text="Our Office" />
+        <Label Grid.Row="0" FontSize="Large" HorizontalOptions="Center" Text="Departments" />
         <ListView x:Name="DeptListView" Grid.Row="2" HasUnevenRows="True" ItemsSource="{Binding ObservableDepartments}">
             <ListView.GestureRecognizers>
                 <TapGestureRecognizer />

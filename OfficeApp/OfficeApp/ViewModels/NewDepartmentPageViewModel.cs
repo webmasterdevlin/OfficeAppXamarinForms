@@ -23,9 +23,8 @@ namespace OfficeApp.ViewModels
             : base(navigationService, pageDialogService)
         {
         }
-        
-        public DelegateCommand SaveCommand => new DelegateCommand(Save);
-        private async void Save()
+
+        public DelegateCommand SaveCommand => new DelegateCommand(async () =>
         {
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
 
@@ -34,18 +33,24 @@ namespace OfficeApp.ViewModels
             //            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             var content = JsonConvert.SerializeObject(
-                new { Name = $"{NewName}", Description = $"{NewDescription}", Head = $"{NewHead}", Code = $"{NewCode}" }
-                );
+                new {Name = $"{NewName}", Description = $"{NewDescription}", Head = $"{NewHead}", Code = $"{NewCode}"}
+            );
 
             var response = await _departmentService.SendPostAsync(content);
-            
-                if (response.IsSuccessStatusCode)
-                {
-                    await NavigationService.NavigateAsync("OfficeApp:///NavigationPage/MainPage"); // This reset the Navigation Stack to prevent user from going back to LoginPage
-                    return;
-                }
 
-                await PageDialogService.DisplayAlertAsync("Error logging in", "Please retype your username and password", "OK");
-        }
+            if (response.IsSuccessStatusCode)
+            {
+                await NavigationService.NavigateAsync(
+                    "OfficeApp:///NavigationPage/MainPage"); // This reset the Navigation Stack to prevent user from going back to LoginPage
+                return;
+            }
+
+            await PageDialogService.DisplayAlertAsync("Error saving your department", "Please ",
+                "OK");
+        });
+        
+        public DelegateCommand LogoutCommand => new DelegateCommand(async () =>
+            await NavigationService.NavigateAsync("OfficeApp:///NavigationPage/LoginPage")
+        );
     }
 }

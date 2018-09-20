@@ -4,10 +4,13 @@ using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Net.Http;
+using System.Threading.Tasks;
 using OfficeApp.Helpers;
 using OfficeApp.Services;
 using Prism.Services;
+using System;
 
 namespace OfficeApp.ViewModels
 {
@@ -27,25 +30,33 @@ namespace OfficeApp.ViewModels
             }
         }
 
-        
+
         public MainPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
             : base(navigationService, pageDialogService)
         {
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
         }
 
-        public DelegateCommand ToNewDepPageCommand => new DelegateCommand(ToNewDep);
-
-        private void ToNewDep()
-        {
-            NavigationService.NavigateAsync("NewDepartmentPage");
-        }
+        public DelegateCommand ToNewDepPageCommand => new DelegateCommand(() =>
+            NavigationService.NavigateAsync("NewDepartmentPage"));
 
         public override async void OnNavigatingTo(NavigationParameters parameters)
         {
+            if (Settings.Jwt == "")
+            {
+               await NavigationService.NavigateAsync("LoginPage", useModalNavigation:true);
+                return;
+            }
+
+            //if (DateTime.UtcNow > Settings.JwtExpirationDate) // FIXME
+            //{
+            //   await NavigationService.NavigateAsync("LoginPage", useModalNavigation:true);
+            //    return;
+            //}
+
             var contents = await _departmentService.SendGetAsync();
-            
-            // Newtonsoft.Json from Nuget
+
+            // JsonConvert is from Newtonsoft Library
             var departments = JsonConvert.DeserializeObject<List<Department>>(contents);
 
             ObservableDepartments = new ObservableCollection<Department>(departments);
@@ -53,14 +64,16 @@ namespace OfficeApp.ViewModels
             base.OnNavigatedTo(parameters);
         }
 
-        public DelegateCommand<Department> EditDeleteCommand => new DelegateCommand<Department>(EditDelete);
-
-        private void EditDelete(Department department)
+        public DelegateCommand<Department> EditDeleteCommand => new DelegateCommand<Department>(department =>
         {
             var tappedCell = department;
             var variableToPass = new NavigationParameters {{"(^_^)ImTheKey", tappedCell}};
 
             NavigationService.NavigateAsync("EditDeleteDepartmentPage", variableToPass);
-        }
+        });
+
+        public DelegateCommand LogoutCommand => new DelegateCommand(async () =>
+            await NavigationService.NavigateAsync("OfficeApp:///NavigationPage/LoginPage")
+        );
     }
 }

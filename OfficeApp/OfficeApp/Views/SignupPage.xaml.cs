@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using Page = Xamarin.Forms.PlatformConfiguration.iOSSpecific.Page;
 
 namespace OfficeApp.Views
 {
@@ -7,7 +8,7 @@ namespace OfficeApp.Views
         public SignupPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasNavigationBar(this, false);      
         }
     }
 }

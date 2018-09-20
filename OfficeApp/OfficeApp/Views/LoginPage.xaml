@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage x:Class="OfficeApp.Views.LoginPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" Title="Login" Padding="20" prism:ViewModelLocator.AutowireViewModel="True" BackgroundColor="Whitesmoke">
-    <StackLayout Padding="20" Orientation="Vertical" Spacing="20" VerticalOptions="Center">
-         <ActivityIndicator Color="DarkGoldenrod" IsEnabled="{Binding IsLogging}" IsRunning="{Binding IsLogging}" />
-        <Label Text="Office App" TextColor="YellowGreen" FontSize="32" HorizontalOptions="Center" VerticalOptions="StartAndExpand" />
-        <Entry Placeholder="email" Keyboard="Email" Text="{Binding Email}" />
-        <Entry IsPassword="True" Placeholder="password" Text="{Binding Password}" />
-        <Button BackgroundColor="YellowGreen" Command="{Binding LoginCommand}" CornerRadius="5" FontSize="Large" Text="Signin" TextColor="White" />
-        <Label HorizontalOptions="Center" TextColor="DarkGray">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Not yet registered? " />
-                    <Span Text="Sign Up" FontAttributes="Bold">
-                        <Span.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ToSignupPageCommand}" />
-                        </Span.GestureRecognizers>
-                    </Span>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+<ContentPage x:Class="OfficeApp.Views.LoginPage" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             Title="Login" prism:ViewModelLocator.AutowireViewModel="True" BackgroundColor="DodgerBlue"   xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true">
+    <Grid BackgroundColor="WhiteSmoke">
+        <StackLayout Padding="20" Orientation="Vertical" Spacing="20" VerticalOptions="Center">
+            <Image HorizontalOptions="Center" Source="company_logo.png" />
+            <ActivityIndicator Color="DarkGoldenrod" IsEnabled="{Binding IsLogging}" IsRunning="{Binding IsLogging}" />
+            <Label Text="Office App" TextColor="Orange" FontSize="32" HorizontalOptions="Center" VerticalOptions="StartAndExpand" />
+            <Entry Placeholder="email" Keyboard="Email" Text="{Binding Email}" />
+            <Entry IsPassword="True" Placeholder="password" Text="{Binding Password}" />
+            <Button BackgroundColor="Orange" Command="{Binding LoginCommand}" CornerRadius="5" FontSize="Large" Text="Log In" TextColor="White" />
+            <Label HorizontalOptions="Center" TextColor="DarkGray">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Not yet registered? " />
+                        <Span Text="Sign Up" FontAttributes="Bold">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToSignupPageCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+
+    </Grid>
 </ContentPage>

@@ -44,10 +44,10 @@ namespace OfficeApp.Services
                     JObject jwtJObject = JsonConvert.DeserializeObject<dynamic>(stringResponse);
 
                     UserToken userToken = JsonConvert.DeserializeObject<UserToken>(stringResponse);
-                    DateTime accessTokenExpiration = jwtJObject.Value<DateTime>(".expires");
-
                     Settings.Jwt = userToken.Token;
-                    Settings.JwtExpirationDate = accessTokenExpiration;
+
+                    //DateTime accessTokenExpiration = jwtJObject.Value<DateTime>(".expires"); // FIXME
+                    //Settings.JwtExpirationDate = accessTokenExpiration;
 
                     return response.IsSuccessStatusCode;
                 }

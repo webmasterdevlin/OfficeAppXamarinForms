@@ -18,41 +18,39 @@ namespace OfficeApp.ViewModels
 
 
 	    public SignupPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
-            : base(navigationService, pageDialogService)
-	    {
+            : base(navigationService, pageDialogService){}
 
+		public DelegateCommand GoToLoginPageCommand => new DelegateCommand(async () => await GoToLogin());
+
+	    private async Task GoToLogin()
+	    {
+            await NavigationService.GoBackAsync();
 	    }
 
-	    public DelegateCommand GoToLoginPageCommand => new DelegateCommand(GoToLogin);
+		public DelegateCommand SignupCommand => new DelegateCommand(async () =>
+		{
+			if (Password != ConfirmPassword)
+			{
+				await PageDialogService.DisplayAlertAsync("Error Signing Up",
+					"Password and confirm password are not matched ", "OK");
+				return;
+			}
 
-	    private void GoToLogin()
-	    {
-            NavigationService.GoBackAsync();
-	    }
+			User user = new User
+			{
+				UserName = UserName,
+				Email = Email,
+				Password = Password
+			};
 
-	    public DelegateCommand SignupCommand => new DelegateCommand(async () => await Signup());
+			var success = await _userService.SignupAsync(user);
 
-	    private async Task Signup()
-	    {
-            if (Password != ConfirmPassword)
-            {
-                await PageDialogService.DisplayAlertAsync("Error Signing Up", "Password and confirm password are not matched ", "OK");
-                return;
-            }
+			if (success)
+				await GoToLogin();
 
-            User user = new User
-            {
-                UserName = UserName,
-                Email = Email,
-                Password = Password
-            };
-
-            var success = await _userService.SignupAsync(user);
-
-	        if (success)
-                GoToLogin();
-	        
-	        else await PageDialogService.DisplayAlertAsync("Registration Not successful. Please try again", "OK", "Cancel");    
-	    }
-    }
+			else
+				await PageDialogService.DisplayAlertAsync("Registration Not successful. Please try again", "OK",
+					"Cancel");
+		});
+	}
 }

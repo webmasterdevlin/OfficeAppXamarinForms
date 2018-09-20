@@ -15,7 +15,7 @@ namespace OfficeApp
         /* 
          * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
          * This imposes a limitation in which the App class must have a default constructor. 
-         * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
+         * App(IPlatfoSrmInitializer initializer = null) cannot be handled by the Activator.
          */
         public App() : this(null) { }
 
@@ -25,7 +25,7 @@ namespace OfficeApp
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

@@ -41,33 +41,33 @@ namespace OfficeApp.ViewModels
             base.OnNavigatingTo(parameters);
         }
 
-        public DelegateCommand UpdateCommand => new DelegateCommand(async () => await Update());
-
-        private async Task Update()
+        public DelegateCommand UpdateCommand => new DelegateCommand(async () =>
         {
-
             var content = JsonConvert.SerializeObject(CurrentDepartment);
 
             var response = await _departmentService.SendPutAsync(CurrentDepartment, content);
-            
-                if (response.IsSuccessStatusCode)
-                {
-                    await NavigationService.GoBackAsync();
-                    return;
-                }
 
-                await PageDialogService.DisplayAlertAsync("Error updating", "Please check your internet", "OK");
-        }
+            if (response.IsSuccessStatusCode)
+            {
+                await NavigationService.GoBackAsync();
+                return;
+            }
 
-        public DelegateCommand DeleteCommand => new DelegateCommand(async () => await Delete());
+            await PageDialogService.DisplayAlertAsync("Error updating", "Please check your internet", "OK");
+        });
 
-        private async Task Delete()
+        public DelegateCommand DeleteCommand => new DelegateCommand(async () =>
         {
-            var userResponse = await PageDialogService.DisplayAlertAsync("Deleting an entry", "You sure you want to delete this?", "Yes", "Cancel");
+            var userResponse = await PageDialogService.DisplayAlertAsync("Deleting an entry",
+                "You sure you want to delete this?", "Yes", "Cancel");
             if (!userResponse) return;
 
             await _departmentService.SendDeleteAsync(CurrentDepartment.Id);
             await NavigationService.GoBackAsync();
-        }
+        });
+        
+        public DelegateCommand LogoutCommand => new DelegateCommand(async () =>
+            await NavigationService.NavigateAsync("OfficeApp:///NavigationPage/LoginPage")
+        );
     }
 }

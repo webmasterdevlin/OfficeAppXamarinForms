@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Devlin Duldulao (NU5SS4QBZ5)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
@@ -183,6 +183,9 @@
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default@2x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\company_logo.png" />
+    <BundleResource Include="Resources\company_logo%402x.png" />
+    <BundleResource Include="Resources\company_logo%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
