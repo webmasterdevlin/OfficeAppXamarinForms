@@ -2,4 +2,4 @@
 
 The backend service of this project is https://github.com/webmasterdevlin/JwtAngularScaffold
 
-![OfficeApp Xamarin Forms screenshot](https://github.com/webmasterdevlin/OfficeAppXamarinForms/blob/master/officeappxf.png)
+![OfficeApp Xamarin Forms screenshot](https://github.com/webmasterdevlin/OfficeAppXamarinForms/blob/master/NewOfficeAppImageXF.png)
