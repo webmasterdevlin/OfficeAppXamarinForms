@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              Title="Login" prism:ViewModelLocator.AutowireViewModel="True" BackgroundColor="DodgerBlue"   xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              ios:Page.UseSafeArea="true">
-    <Grid BackgroundColor="WhiteSmoke">
+    <Grid>
+        <Image Source="officebg.jpeg"  Aspect="AspectFill" />
         <StackLayout Padding="20" Orientation="Vertical" Spacing="20" VerticalOptions="Center">
             <Image HorizontalOptions="Center" Source="company_logo.png" />
-            <ActivityIndicator Color="DarkGoldenrod" IsEnabled="{Binding IsLogging}" IsRunning="{Binding IsLogging}" />
+            <ActivityIndicator Color="Crimson" IsEnabled="{Binding IsLogging}" IsRunning="{Binding IsLogging}" />
             <Label Text="Office App" TextColor="Orange" FontSize="32" HorizontalOptions="Center" VerticalOptions="StartAndExpand" />
-            <Entry Placeholder="email" Keyboard="Email" Text="{Binding Email}" />
-            <Entry IsPassword="True" Placeholder="password" Text="{Binding Password}" />
+            <Entry BackgroundColor="Transparent" Keyboard="Email" PlaceholderColor="LightGray" Placeholder="email:" TextColor="White" Text="{Binding Email}" />
+            <Entry BackgroundColor="Transparent" IsPassword="True" PlaceholderColor="LightGray" Placeholder="password:" TextColor="White" Text="{Binding Password}"  />
             <Button BackgroundColor="Orange" Command="{Binding LoginCommand}" CornerRadius="5" FontSize="Large" Text="Log In" TextColor="White" />
             <Label HorizontalOptions="Center" TextColor="DarkGray">
                 <Label.FormattedText>

@@ -2,13 +2,14 @@
 <ContentPage x:Class="OfficeApp.Views.SignupPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" Title="Signup Page" prism:ViewModelLocator.AutowireViewModel="True" BackgroundColor="DodgerBlue"  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              ios:Page.UseSafeArea="true" >
     <Grid BackgroundColor="White">
+        <Image Source="officebg.jpeg" Aspect="AspectFill" />
         <StackLayout Padding="20" Orientation="Vertical" Spacing="20" VerticalOptions="Center">
             <Image HorizontalOptions="Center" Source="company_logo.png" />
             <Label Text="Office App" TextColor="YellowGreen" FontSize="32" HorizontalOptions="Center" VerticalOptions="StartAndExpand" />
-            <Entry Placeholder="username" Text="{Binding UserName}" />
-            <Entry Placeholder="email" Keyboard="Email" Text="{Binding Email}" />
-            <Entry IsPassword="True" Placeholder="password" Text="{Binding Password}" />
-            <Entry IsPassword="True" Placeholder="confirm password" Text="{Binding ConfirmPassword}" />
+            <Entry BackgroundColor="Transparent" PlaceholderColor="LightGray" TextColor="White" Placeholder="username" Text="{Binding UserName}" />
+            <Entry BackgroundColor="Transparent" PlaceholderColor="LightGray" TextColor="White" Placeholder="email" Keyboard="Email" Text="{Binding Email}" />
+            <Entry BackgroundColor="Transparent" PlaceholderColor="LightGray" TextColor="White" IsPassword="True" Placeholder="password" Text="{Binding Password}" />
+            <Entry BackgroundColor="Transparent" PlaceholderColor="LightGray" TextColor="White" IsPassword="True" Placeholder="confirm password" Text="{Binding ConfirmPassword}" />
             <Button BackgroundColor="YellowGreen" Command="{Binding SignupCommand}" CornerRadius="5" FontSize="Large" Text="Register" TextColor="White" />
             <Label HorizontalOptions="Center" Text="Back to login" TextColor="DarkGray">
                 <Label.GestureRecognizers>

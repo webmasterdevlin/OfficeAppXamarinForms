@@ -186,6 +186,7 @@
     <BundleResource Include="Resources\company_logo.png" />
     <BundleResource Include="Resources\company_logo%402x.png" />
     <BundleResource Include="Resources\company_logo%403x.png" />
+    <BundleResource Include="Resources\officebg.jpeg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
