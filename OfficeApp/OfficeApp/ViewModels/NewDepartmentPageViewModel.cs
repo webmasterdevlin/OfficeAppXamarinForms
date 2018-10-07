@@ -5,6 +5,7 @@ using Prism.Navigation;
 using Prism.Services;
 using System.Net.Http;
 using System.Text;
+using Newtonsoft.Json.Serialization;
 using OfficeApp.Services;
 
 namespace OfficeApp.ViewModels
@@ -26,6 +27,10 @@ namespace OfficeApp.ViewModels
 
         public DelegateCommand SaveCommand => new DelegateCommand(async () =>
         {
+            var toCamelCaseProperties = new JsonSerializerSettings {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
             _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Settings.Jwt}");
 
             //            Another option for using Content-Type
@@ -33,7 +38,8 @@ namespace OfficeApp.ViewModels
             //            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             var content = JsonConvert.SerializeObject(
-                new {Name = $"{NewName}", Description = $"{NewDescription}", Head = $"{NewHead}", Code = $"{NewCode}"}
+                new {Name = $"{NewName}", Description = $"{NewDescription}",
+                Head = $"{NewHead}", Code = $"{NewCode}"}, toCamelCaseProperties
             );
 
             var response = await _departmentService.SendPostAsync(content);
